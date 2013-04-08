@@ -14,7 +14,7 @@ def findSubstrings(string, substrings):
 #Takes the first stop codon then looks at all starts prior to that stop.
 #If any are in frame, creates an ORF with that start and stop pair.
 def findORFs(sequence, min_len, max_len):
-    starts = findSubstrings(sequence, ['CTG'])
+    starts = findSubstrings(sequence, ['CTG', 'ATG'])
     stops =  findSubstrings(sequence, ['TAG', 'TAA', 'TGA'])
     indices= []
     if len(starts) > 0 and len(stops) > 0:

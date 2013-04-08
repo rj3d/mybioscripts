@@ -118,10 +118,13 @@ def writeSpacers(spacers, outfile):
     f.close()
         
 if __name__ == "__main__":
-    parser = spacerParser()#Can change the default options if desired.
-    print "Parsing sequences... "
-    sequences = fasta(sys.argv[1])
-    spacers = findSpacers(sequences, parser)
-    writeSpacers(spacers, sys.argv[2])
+    if len(sys.argv) == 3:
+        parser = spacerParser()#Can change the default options if desired.
+        print "Parsing sequences... "
+        sequences = fasta(sys.argv[1])
+        spacers = findSpacers(sequences, parser)
+        writeSpacers(spacers, sys.argv[2])
+    else:
+        print "Usage: python getSpacers.py input.fasta output.tsv"
 
 

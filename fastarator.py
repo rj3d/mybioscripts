@@ -46,6 +46,6 @@ if __name__ == "__main__":
     import sys
     ff = fasta(sys.argv[1])
     print "Successfully read " + str(ff.num_seqs) + " sequences."
-    for title, seq in iter(ff):
+    for title, seq in ff:
         print "Iterating over sequence " + title
                 
