@@ -103,7 +103,7 @@ def findSpacers(sequences, parser):
 
 def writeSpacers(spacers, outfile):
     f = open(outfile, 'w')
-    f.write('Spacer\tSource\tStart\tStop\tMax_score\n')
+    f.write('Spacer\tSource\tStart\tStop\tMin_score\n')
     for spacer in spacers:
         f.write(spacer['spacer'])
         f.write('\t')
@@ -113,7 +113,7 @@ def writeSpacers(spacers, outfile):
         f.write('\t')
         f.write(str(spacer['stop']))
         f.write('\t')
-        f.write(str(spacer['max_score']))
+        f.write(str(spacer['Min_score']))
         f.write('\n')
     f.close()
         
