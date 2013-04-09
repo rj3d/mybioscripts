@@ -113,7 +113,7 @@ def writeSpacers(spacers, outfile):
         f.write('\t')
         f.write(str(spacer['stop']))
         f.write('\t')
-        f.write(str(spacer['Min_score']))
+        f.write(str(spacer['min_score']))
         f.write('\n')
     f.close()
         
