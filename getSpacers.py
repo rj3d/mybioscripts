@@ -42,19 +42,19 @@ def defaultFact():
 
 def compareEnds(spacers, min_mismatch):
     filt = []
-    max_scores = defaultdict(defaultFact)
-    #Compare all unique combinations of spacers and score
+    min_scores = defaultdict(defaultFact)
+    #Compare all unique combinations of spacers and save the lowest score (closest spacer)
     for i, j in itertools.combinations(spacers, 2):
         end_i = i['end']
         end_j = j['end']
         score = sum( [ 0 if x==y else 1 for x,y in itertools.izip(end_i,end_j)] ) #Count the number of mismatches
-        if score > max_scores[end_i]: max_scores[end_i] = score
-        if score > max_scores[end_j]: max_scores[end_j] = score
+        if score < min_scores[end_i]: min_scores[end_i] = score
+        if score < min_scores[end_j]: min_scores[end_j] = score
     #Filter the scored spacers based on min_mismatch
     for spacer in spacers:
-        max_score = max_scores[spacer['end']]
-        if max_score >= min_mismatch:
-            spacer['max_score'] = max_score
+        min_score = min_scores[spacer['end']]
+        if min_score >= min_mismatch:
+            spacer['min_score'] = min_score
             filt.append(spacer)
     return filt
 
@@ -82,7 +82,7 @@ def getSpacerDict(spacers, parser):
         end = spacer[0:spacer_len-spacer_core_start]
         core = spacer[spacer_len-spacer_core_start:spacer_len-parser.pam_size]
         spacer_dict[core].append(
-        {'end':end, 'start':start, 'stop':stop, 'title':title, 'spacer':spacer, 'max_score':-1}
+        {'end':end, 'start':start, 'stop':stop, 'title':title, 'spacer':spacer, 'min_score':-1}
         )    
     return spacer_dict    
 
